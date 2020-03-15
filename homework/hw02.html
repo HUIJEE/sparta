@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나홀로 쇼핑몰</title>
+
+    <!--jquery import-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--font import-->
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1&display=swap" rel="stylesheet">
+
+    <style>
+        .wrap {
+            width: 600px;
+            margin: 50px auto 0 auto;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            font-family: 'Gothic A1', sans-serif;
+        }
+
+        .name {
+            font-size: 30px;
+        }
+
+        .price {
+            font-size: 25px;
+        }
+
+        .explain {
+            font-size: 20px;
+        }
+    </style>
+
+    <script>
+        function order_table() {
+            let order_name = $('#input_name').val();
+            let order_num = $('#input_num').val();
+            let order_address = $('#input_address').val();
+            let order_phnum = $('#input_phnum').val();
+
+            if (order_name == '') {
+                alert('이름을 입력해주세요')
+                $('#input_name').focus()
+                return
+            } else if (order_num == '') {
+                alert('수량을 입력해주세요')
+                $('#input_num').focus()
+                return
+            } else if (order_address == '') {
+                alert('주소를 입력해주세요')
+                $('#input_address').focus()
+                return
+            } else if (order_phnum == '') {
+                alert('휴대폰번호를 입력해주세요')
+                $('#input_phnum').focus()
+                return
+            }
+
+            let temp_html = '<tr>\
+            <td>'+ order_name + '</td>\
+            <td>'+ order_num + '개' + '</td>\
+            <td>'+ order_address + '</td>\
+            <td>'+ order_phnum + '</td>\
+          </tr>';
+            $('#tables').append(temp_html);
+        }
+    </script>
+
+</head>
+
+<body>
+    <!--전체로 묶어서 한번에 스타일 변경(wrap)-->
+    <div class="wrap">
+        <!--판매상품 이미지-->
+        <div class="card">
+            <img src="https://thumbnail.10x10.co.kr/webimage/image/basic600/171/B001719475.jpg?cmd=thumb&w=500&h=500&fit=true&ws=false"
+                class="card-img-top" alt="card_img">
+        </div>
+
+        <!--텍스트 부분-->
+        <div class="title">
+            <!--개별적인 폰트적용을 위해서 클래스 지정-->
+            <span class="name">고양이 피규어</span>
+            <span class="price"> 가격 : 6000원 / 개</span>
+            <br>
+            <span class="explain"> 여러 종류의 고양이 피규어 중 맘에 드는 고양이를 골라 주문해주세요! </span>
+        </div>
+
+        <!--주문자 이름-->
+        <div class="input-group mb-3">
+            <div class="ordername">
+                <span class="input-group-text" id="inputGroup-sizing-default">주문자 이름</span>
+            </div>
+            <input id="input_name" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <!--수량-->
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">수량</label>
+            </div>
+            <select class="custom-select" id="input_num">
+                <option selected>--수량을 선택하세요--</option>
+                <option value="1">1개</option>
+                <option value="2">2개</option>
+                <option value="3">3개</option>
+                <option value="4">4개</option>
+                <option value="5">5개</option>
+            </select>
+        </div>
+
+        <!--주소-->
+        <div class="input-group mb-3">
+            <div class="adress">
+                <span class="input-group-text" id="inputGroup-sizing-default">주소</span>
+            </div>
+            <input id="input_address" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <!--전화번호-->
+        <div class="input-group mb-3">
+            <div class="phnum">
+                <span class="input-group-text" id="inputGroup-sizing-default">전화번호</span>
+            </div>
+            <input id="input_phnum" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <!--주문하기 버튼-->
+        <div class="order">
+            <button onclick="order_table()" type="button" class="btn btn-primary">주문하기</button>
+        </div>
+        <!--주문 완료시 밑에 표로 변환-->
+        <hr>
+        <div class="orders">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">--이름--</th>
+                        <th scope="col">--수량--</th>
+                        <th scope="col">--주소--</th>
+                        <th scope="col">--전화번호--</th>
+                    </tr>
+                </thead>
+                <tbody id="tables">
+                    <tr>
+                        <td>홍길동</td>
+                        <td>2개</td>
+                        <td>서울시 성동구</td>
+                        <td>010-1234-5678</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
